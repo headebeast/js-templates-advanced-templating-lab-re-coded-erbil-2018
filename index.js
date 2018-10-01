@@ -1,51 +1,50 @@
 function initForm() {
-let formTemplate = document.getElementById("recipe-form-template").innerHTML
-let template = Handlebars.compile(formTemplate)
+  var formTemplate = document.getElementById("recipe-form-template").innerHTML
+  var template = Handlebars.compile(formTemplate)
   document.getElementsByTagName("main")[0].innerHTML = template({'submitAction': 'createRecipe()'})
 }
 
 function createRecipe() {
-let recipe = getRecipeVals()
-let recipeTemplate = document.getElementById("recipe-template").innerHTML
-let template = Handlebars.compile(recipeTemplate)
+  var recipe = getRecipeVals()
+  var recipeTemplate = document.getElementById("recipe-template").innerHTML
+  var template = Handlebars.compile(recipeTemplate)
   document.getElementById("main").innerHTML = template(recipe)
 }
 
 function updateRecipe() {
-  let recipe = getRecipeVals()
-  let recipeTemplate = document.getElementById("recipe-template").innerHTML
-  let template = Handlebars.compile(recipeTemplate)
+  var recipe = getRecipeVals()
+  var recipeTemplate = document.getElementById("recipe-template").innerHTML
+  var template = Handlebars.compile(recipeTemplate)
   document.getElementById("main").innerHTML = template(recipe)
 }
 
 function displayEditForm() {
-  let name = document.getElementById("nameHeader").innerText
-  let description = document.getElementById("recipeDescription").innerText
-  let ingredientsNodes = document.getElementsByName("ingredientsList")
-  let ingredients = []
-  for(let i=0;i<ingredientsNodes.length;i++) {
+  var name = document.getElementById("nameHeader").innerText
+  var description = document.getElementById("recipeDescription").innerText
+  var ingredientsNodes = document.getElementsByName("ingredientsList")
+  var ingredients = []
+  for(var i=0;i<ingredientsNodes.length;i++) {
     ingredients.push(ingredientsNodes[i].innerText)
   }
 
+  var recipe = {name, description, ingredients, submitAction: 'createRecipe()'}
 
-let recipe = {name, description, ingredients, submitAction: 'createRecipe()'}
-
-let recipeFormTemplate = document.getElementById("recipe-form-template").innerHTML
-let template = Handlebars.compile(recipeFormTemplate)
+  var recipeFormTemplate = document.getElementById("recipe-form-template").innerHTML
+  var template = Handlebars.compile(recipeFormTemplate)
   document.getElementById("main").innerHTML = template(recipe)
 }
 
 function getRecipeVals() {
-  let ingredientsNodes = document.getElementsByName("ingredients")
-  let ingredients = []
-  for(let i=0;i<ingredientsNodes.length;i++) {
+  var ingredientsNodes = document.getElementsByName("ingredients")
+  var ingredients = []
+  for(var i=0;i<ingredientsNodes.length;i++) {
     if(ingredientsNodes[i].value !== "") {
       ingredients.push(ingredientsNodes[i].value)
     }
   }
-  let name = document.getElementById("name").value
-  let description = document.getElementById("description").value
-  let recipe = {name, ingredients, description}
+  var name = document.getElementById("name").value
+  var description = document.getElementById("description").value
+  var recipe = {name, ingredients, description}
   return(recipe)
 }
 
